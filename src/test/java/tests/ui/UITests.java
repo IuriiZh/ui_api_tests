@@ -144,7 +144,7 @@ public class UITests extends UIBaseTest {
         CartPage.removeAllFromCart();
         ElementsCollection addButtons = $$x("//button[contains(@data-test, 'add-to-cart-')]");
         int amountItems = (new Random()).nextInt(addButtons.size()) + 1;;
-        for (int i = 1; i <= amountItems; i++) {
+        for (int i = 0; i < amountItems; i++) {
             addButtons.get(i).click();
         }
         assertEquals(amountItems, CartPage.getCountInCart());
