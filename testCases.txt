@@ -1,0 +1,38 @@
+Test cases:
+UI tests:
+Pre-condition:
+URL: http://www.saucedemo.com
+username: standard_user
+password: secret_sauce
+
++ 1. Verify landing page
++ 2. Verify unsuccessful login
++ 3. Verify successful login
++ 4. Verify add to cart
++ 5. Verify cancellation of purchase
++ 6. Verify removing item from cart
++ 7. Verify calculation of items
+
+
+API tests:
+Pre-condition:
+baseURL: https://reqres.in/
+swagger: https://reqres.in/api-docs/
+email:"eve.holt@reqres.in"
+password: "cityslicka"
+
++ 1. Verify POST - successful login
++ 2. Verify POST - unsuccessful login
++ 3. Verify POST - successful Register
++ 4. Verify POST - unsuccessful Register
++ 5. Validation for list resource schema
++ 6. Verify GET list Resource
++ 7. Verify Delete user
++ 8. Validation for user list schema
++ 9. Validation for single user schema
++ 10. Verify GET single user
++ 11. Verify GET user data List
++ 12. Verify GET List user data Equity
++ 13. Verify POST - created User
++ 14. Verify PUT - update User
++ 15. Bug - new user not added - after successfully added
