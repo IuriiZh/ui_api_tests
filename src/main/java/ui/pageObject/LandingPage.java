@@ -1,9 +1,7 @@
 package ui.pageObject;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selenide.$;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
