@@ -5,7 +5,6 @@ import api.reqres.in.CreatedUserResponse;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import static api.setup.RequestSpecs.*;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static utils.PropertyReader.*;
 import static utils.PropertyReader.email;

@@ -18,11 +18,6 @@ import java.io.IOException;
 
 public class LandingPage {
 
-    public static final SelenideElement loginLogo = $(".login_logo").as("Landing logo");
-    public static final SelenideElement usernameField = $("#user-name").as("Username Field");
-    public static final SelenideElement passwordField = $("#password").as("Password Field");
-    public static final SelenideElement loginButton = $("#login-button").as("Login Button");
-
     @Step("Check connection")
     public static void accessLanding() throws IOException {
         HttpClient client = HttpClientBuilder.create().build();

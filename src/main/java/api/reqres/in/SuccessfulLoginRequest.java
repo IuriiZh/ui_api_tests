@@ -2,10 +2,6 @@ package api.reqres.in;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.junit.Assert;
-import static org.hamcrest.Matchers.equalTo;
-import static api.setup.RequestSpecs.request;
-import static utils.PropertyReader.*;
 
 @Setter
 @Getter

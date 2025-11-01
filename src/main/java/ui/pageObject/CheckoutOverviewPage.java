@@ -19,12 +19,9 @@ public class CheckoutOverviewPage {
     }
 
     //BUTTONS
-    private static final SelenideElement finishButton = $("#finish").as("Finish Button");
     private static final SelenideElement cancelButton = $("#cancel").as("Cancel Button");
 
     //PRICE
-    private static final ElementsCollection itemPrice = $$(".inventory_item_price").as("Item Price");
-    public static SelenideElement itemTotalPrice = $(".summary_subtotal_label").as("Item Total Price");
 
     @Step("Click to cancel button")
     public static void clickToCancelButton() {

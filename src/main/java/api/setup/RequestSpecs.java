@@ -19,7 +19,7 @@ public class RequestSpecs {
 
     private static final long responseTime = 5000;
     public static RequestSpecification request(int status){
-        RequestSpecs.installSpecifications(RequestSpecs.requestSpecification(urlAPI),
+        RequestSpecs.installSpecifications(RequestSpecs.requestSpecification(),
                 RequestSpecs.responseSpecification(status));
         return given()
                 .header(urlAPIKeyHeader, urlAPIKey)
@@ -27,7 +27,7 @@ public class RequestSpecs {
                 .log().uri();
     }
 
-    public static RequestSpecification requestSpecification(String baseURL) {
+    public static RequestSpecification requestSpecification() {
         return new RequestSpecBuilder()
                 .setBaseUri(urlAPI)
                 .setContentType(ContentType.JSON)
