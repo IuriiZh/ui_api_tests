@@ -10,7 +10,7 @@
   - [**Perform On Browsers**](#perform-on-browsers)
 
 ## **Libraries & Tools**
-> **Maven**<br/>
+> **Gradle**<br/>
 > **Selenide**<br/>
 > **Allure**<br/>
 > **JUnit5 - Platform**<br/>
@@ -24,17 +24,17 @@ UI_API_Tests/
 │   ├── main/
 │   │   ├── java/
 │   │       ├── api/
-│   │       │   ├── reqres_in/
-│   │       │   │   ├── CreateUserRequest.java
-│   │       │   │   ├── CreatedUserResponse.java
-│   │       │   │   ├── ListResourceResponse.java
-│   │       │   │   ├── SuccessfulLoginRequest.java
-│   │       │   │   ├── SuccessfulLoginResponse.java
-│   │       │   │   ├── SuccessfulRegisterRequest.java
-│   │       │   │   ├── SuccessfulRegisterResponse.java
-│   │       │   │   └── UserdataResponse.java
+│   │       │   ├── reqres/
+│   │       │   │   ├── in/
+│   │       │   │       ├── CreateUserRequest.java
+│   │       │   │       ├── CreatedUserResponse.java
+│   │       │   │       ├── ListResourceResponse.java
+│   │       │   │       ├── SuccessfulLoginRequest.java
+│   │       │   │       ├── SuccessfulLoginResponse.java
+│   │       │   │       ├── SuccessfulRegisterRequest.java
+│   │       │   │       ├── SuccessfulRegisterResponse.java
+│   │       │   │       └── UserdataResponse.java
 │   │       │   ├── setup/
-│   │       │   │   ├── RequestApiService.java
 │   │       │   │   └── RequestSpecs.java
 │   │       │   ├── util/
 │   │       │       ├── JsonToStringConverter.java
@@ -46,7 +46,6 @@ UI_API_Tests/
 │   │       │       ├── CheckoutOverviewPage.java
 │   │       │       ├── LandingPage.java
 │   │       │       ├── LoginPage.java
-│   │       │       ├── Page.java
 │   │       │       └── ProductsPage.java
 │   │       ├── utils/
 │   │           ├── PropertyReader.java
@@ -56,9 +55,7 @@ UI_API_Tests/
 │       ├── java/
 │       │   ├── tests/
 │       │       ├── api/
-│       │       │   ├── DeleteUserTest.java
 │       │       │   ├── LoginTests.java
-│       │       │   ├── RegisterTests.java
 │       │       │   ├── ResourceTests.java
 │       │       │   ├── UserTests.java
 │       │       │   └── UserdataTests.java
@@ -78,7 +75,9 @@ UI_API_Tests/
 │           ├── login-data.csv
 │           └── test.properties
 ├── README.md
-├── pom.xml
+├── build.gradle
+├── gradlew
+├── gradlew.bat
 └── testCases.txt
 ```
 
@@ -88,11 +87,11 @@ UI_API_Tests/
 >
 ### **Building**
 
-> `mvn clean verify`
+> `clean test allureReport --continue`
 
 ### **Generate Allure report**
 
-> `allure serve target/allure-results`
+> `allure serve build/allure-results`
 
 
 ### **Perform On Browsers**
