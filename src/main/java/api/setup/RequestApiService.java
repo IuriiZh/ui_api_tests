@@ -1,6 +1,6 @@
 package api.setup;
 
-import api.reqres_in.UserdataResponse;
+import api.reqres.in.UserdataResponse;
 
 public class RequestApiService {
     public RequestApiService getSingleUser(String id, int status){

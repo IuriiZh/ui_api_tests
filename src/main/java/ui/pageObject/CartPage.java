@@ -6,17 +6,17 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$x;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
-public class CartPage extends Page {
+public class CartPage {
 
     //Title
     public static final SelenideElement pageTitleElement = $(".header_secondary_container .title").as("Cart Title");
     public static final String pageTitle = "Your Cart";
 
     public static void isCurrentPage() {
-        elementVisible(pageTitleElement, true);
-        assertEquals(pageTitle, pageTitleElement.getText());
+        pageTitleElement.shouldBe(visible).shouldHave(text(pageTitle));
     }
 
     //BUTTONS
@@ -27,6 +27,7 @@ public class CartPage extends Page {
     //Badge
     public static final SelenideElement cartBadge = $(".shopping_cart_badge").as("Shopping cart badge");
 
+    @Step("Check car item's count")
     public static int getCountInCart() {
         return cartBadge.is(visible) ? Integer.parseInt(cartBadge.getText()) : 0;
     }
@@ -43,15 +44,15 @@ public class CartPage extends Page {
         CheckoutInformationPage.isCurrentPage();
     }
 
-    @Step("Click to remove button")
+    @Step("Click to remove button Backpack")
     public static void removeFromCartBackpack() {
         removeFromCartBackpack.click();
     }
 
-    @Step("Verifying removing from cart")
-    public static void verifyRemovingFromCart(int oldValueInCart) {
-        Page.elementVisible(removeFromCartBackpack, false);
-        assertEquals(oldValueInCart-1, CartPage.getCountInCart());
+    @Step("Verifying removing from cart Backpack")
+    public static void verifyRemovingFromCartBackpack(int oldValueInCart) {
+        removeFromCartBackpack.shouldBe(hidden);
+        assertThat(oldValueInCart-1, equalTo(CartPage.getCountInCart()));
     }
 
     public static void removeAllFromCart() {

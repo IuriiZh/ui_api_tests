@@ -4,7 +4,8 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
@@ -15,41 +16,23 @@ import utils.PropertyReader;
 
 import java.io.IOException;
 
-public class LandingPage extends Page {
-
-    //Title
-    public static final SelenideElement pageTitleElement = null;
-    public static final String pageTitle = "";
-
-    public static void isCurrentPage() {
-        elementVisible(pageTitleElement, true);
-        assertEquals(pageTitle, pageTitleElement.getText());
-    }
+public class LandingPage {
 
     public static final SelenideElement loginLogo = $(".login_logo").as("Landing logo");
     public static final SelenideElement usernameField = $("#user-name").as("Username Field");
     public static final SelenideElement passwordField = $("#password").as("Password Field");
     public static final SelenideElement loginButton = $("#login-button").as("Login Button");
 
-    @Step("Connect")
+    @Step("Check connection")
     public static void accessLanding() throws IOException {
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(PropertyReader.getInstance().getUIUrl());
         HttpResponse response = client.execute(request);
-        assertEquals(200, response.getStatusLine().getStatusCode());
+        assertThat(response.getStatusLine().getStatusCode(), equalTo(200));
     }
 
-    @Step("Title")
+    @Step("Verify title")
     public static void verifyTitle() {
-        assertEquals("Swag Labs", Selenide.title());
+        assertThat(Selenide.title(), equalTo("Swag Labs"));
     }
-
-    @Step("Verify base elements visibility")
-    public static void landingBaseElementsVisibility() {
-        Page.elementVisible(loginLogo, true);
-        Page.elementVisible(usernameField, true);
-        Page.elementVisible(passwordField, true);
-        Page.elementVisible(loginButton, true);
-    }
-
 }

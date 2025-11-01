@@ -1,6 +1,6 @@
 package tests.api;
 
-import api.reqres_in.UserdataResponse;
+import api.reqres.in.UserdataResponse;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import java.util.List;
@@ -10,15 +10,19 @@ import static org.hamcrest.Matchers.equalTo;
 import static api.setup.RequestSpecs.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Epic("API Tests")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@DisplayName("API:User schema tests")
+@Tag("api")
 public class UserdataTests {
 
+    @Feature("API:Userdata")
     @Severity(SeverityLevel.BLOCKER)
     @Test
     @Order(1)
-    @DisplayName("User list Json Scheme Validation")
-    @Description("Tests for user list Json Scheme Validation")
+    @DisplayName("User list Json Scheme Validation GET")
+    @Description("Tests for user list Json Scheme Validation GET")
     public void userListJsonSchemeValidation() {
         request(200)
             .when()
@@ -29,11 +33,12 @@ public class UserdataTests {
             .body(matchesJsonSchemaInClasspath("reqres/json_scheme/userdata_list.json"));
     }
 
+    @Feature("API:Userdata")
     @Severity(SeverityLevel.BLOCKER)
     @Test
     @Order(2)
-    @DisplayName("Single user Json Scheme Validation")
-    @Description("Tests for single user Json Scheme Validation")
+    @DisplayName("Single user Json Scheme Validation GET")
+    @Description("Tests for single user Json Scheme Validation GET")
     public void singleUserJsonSchemeValidation() {
         request(200)
             .when()
@@ -44,6 +49,7 @@ public class UserdataTests {
             .body(matchesJsonSchemaInClasspath("reqres/json_scheme/single_user.json"));
     }
 
+    @Feature("API:Userdata")
     @Severity(SeverityLevel.BLOCKER)
     @Test
     @Order(3)
@@ -60,11 +66,12 @@ public class UserdataTests {
                 .body("data.size()", equalTo(5));
     }
 
+    @Feature("API:Userdata")
     @Severity(SeverityLevel.BLOCKER)
     @Test
     @Order(4)
-    @DisplayName("User data List")
-    @Description("Tests for user data List")
+    @DisplayName("User data List GET")
+    @Description("Tests for user data List GET")
     public void userdataListTests() {
         List<UserdataResponse> users = request(200)
                 .when()
@@ -78,11 +85,12 @@ public class UserdataTests {
         users.forEach(x -> assertTrue(x.getAvatar().contains(x.getId().toString())));
     }
 
+    @Feature("API:Userdata")
     @Severity(SeverityLevel.BLOCKER)
     @Test
     @Order(5)
-    @DisplayName("User data Equity")
-    @Description("Tests for user data Equity")
+    @DisplayName("User data Equity GET")
+    @Description("Tests for user data Equity GET")
     public void userdataEquityTests() {
         String userDataPage1 = request(200)
                 .when()

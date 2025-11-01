@@ -1,4 +1,4 @@
-package api.reqres_in;
+package api.reqres.in;
 
 import lombok.Getter;
 import lombok.Setter;

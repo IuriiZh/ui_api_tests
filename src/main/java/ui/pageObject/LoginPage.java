@@ -2,23 +2,14 @@ package ui.pageObject;
 
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.qameta.allure.Step;
 import utils.PropertyReader;
 
-public class LoginPage extends Page {
-
-    //Title
-    public static final SelenideElement pageTitleElement = null;
-    public static final String pageTitle = "";
-
-    public static void isCurrentPage() {
-        elementVisible(pageTitleElement, true);
-        assertEquals(pageTitle, pageTitleElement.getText());
-    }
+public class LoginPage {
 
     //LOGIN PAGE
     public static final SelenideElement loginLogo = $(".login_logo").as("Landing logo");
@@ -29,27 +20,26 @@ public class LoginPage extends Page {
 
     //BUTTON
     public static final SelenideElement loginButton = $("#login-button").as("Login Button");
-    public static final SelenideElement logoutButton = $("#login-buttonlogout_sidebar_link").as("Logout Button");
 
     //DATA
-    public static final CharSequence USERNAME = (PropertyReader.getInstance().getUIUsername());
-    public static final CharSequence PASSWORD = (PropertyReader.getInstance().getUIPassword());
+    public static final String UIUsername = (PropertyReader.getInstance().getUIUsername());
+    public static final String UIPassword = (PropertyReader.getInstance().getUIPassword());
 
     //MESSAGE
     public static SelenideElement errorLoginMessage = $(".error-message-container h3").as("Error login message");
 
-    @Step("Open login page")
-    public static void openLoginPage() {
+    @Step("Open application")
+    public static void openApplication() {
         open(PropertyReader.getInstance().getUIUrl());
-        checkCurrentPageIsItLoginPage();
+        isCurrentPage();
     }
 
-    @Step("Check that current page is login page")
-    public static void checkCurrentPageIsItLoginPage(){
-        Page.elementVisible(loginLogo, true);
-        Page.elementVisible(usernameField, true);
-        Page.elementVisible(passwordField, true);
-        Page.elementVisible(loginButton, true);
+    @Step("Check that current page is Login page")
+    public static void isCurrentPage(){
+        loginLogo.shouldBe(visible);
+        usernameField.shouldBe(visible);
+        passwordField.shouldBe(visible);
+        loginButton.shouldBe(visible);
     }
 
     @Step("Login")
@@ -59,12 +49,21 @@ public class LoginPage extends Page {
         loginButton.click();
     }
 
-    @Step("Logout")
-    public static void logout() {
-        logoutButton.click();
+    public static void loginAs(String username, String wrongPassword) {
+        login(username, wrongPassword);
+        ProductsPage.isCurrentPage();
     }
 
+    public static void loginWithWrongPassword(String wrongPassword) {
+        login(UIUsername, wrongPassword);
+    }
+
+    public static void loginWithValidCredentials() {
+        login(UIUsername, UIPassword);
+    }
+    @Step("Check error message")
     public static void verifyErrorMessage() {
-        Page.elementVisible(errorLoginMessage, true);
+        errorLoginMessage.shouldBe(visible);
     }
 }
+

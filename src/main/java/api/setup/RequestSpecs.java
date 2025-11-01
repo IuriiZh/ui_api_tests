@@ -1,12 +1,16 @@
 package api.setup;
 
-import api.reqres_in.*;
+import api.reqres.in.SuccessfulLoginRequest;
+import api.reqres.in.SuccessfulLoginResponse;
+import api.reqres.in.SuccessfulRegisterRequest;
+import api.reqres.in.SuccessfulRegisterResponse;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.builder.*;
 import io.restassured.http.ContentType;
 import io.restassured.specification.*;
-import org.junit.Assert;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
 import static utils.PropertyReader.*;
@@ -73,8 +77,8 @@ public class RequestSpecs {
                     .then()
                     .log().status()
                     .log().body().extract().as(SuccessfulRegisterResponse.class);
-            Assert.assertEquals(id, successfulRegisterResponse.getId());
-            Assert.assertEquals(successfulRegisterResponse.getToken(), API_token);
+            assertThat(id, equalTo(successfulRegisterResponse.getId()));
+            assertThat(successfulRegisterResponse.getToken(), equalTo(API_token));
         }
         else if(status == 400) {
             request(status)
